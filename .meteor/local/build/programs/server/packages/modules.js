@@ -98,7 +98,6 @@ install("routepolicy", "meteor/routepolicy/main.js");
 install("boilerplate-generator", "meteor/boilerplate-generator/generator.js");
 install("webapp-hashing");
 install("webapp", "meteor/webapp/webapp_server.js");
-install("autopublish");
 install("ddp-server");
 install("ddp");
 install("allow-deny");

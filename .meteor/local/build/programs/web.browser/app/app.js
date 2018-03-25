@@ -27,8 +27,9 @@ Template.addFoodPlace.events({
   "click button[name=newFoodPlace]": function (e, template) {
     e.preventDefault();
     var input = $("#newFoodPlace");
-    var nome = input.val();
-    FoodPlaces.insert({
+    var nome = input.val(); //FoodPlaces.insert({nome: nome});
+
+    Meteor.call("newFoodPlace", {
       nome: nome
     });
     input.val("");
@@ -91,10 +92,9 @@ Template.listFoodPlaces.helpers({
 });
 Template.listFoodPlaces.events({
   "click button": function (e, template) {
-    var foodPlace = this;
-    FoodPlaces.remove({
-      _id: foodPlace._id
-    });
+    var foodPlace = this; //FoodPlaces.remove({_id: foodPlace._id});
+
+    Meteor.call("removeFoodPlace", foodPlace._id);
   }
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +116,19 @@ Template.body.addContent((function() {
 }));
 Meteor.startup(Template.body.renderToDocument);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"index.js":function(){
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                            //
+// client/index.js                                                                                            //
+//                                                                                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                              //
+Meteor.startup(function () {
+  Meteor.subscribe("FoodPlaces");
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }},"models":{"foodPlaces.js":function(){
@@ -141,4 +154,5 @@ require("/client/listFoodPlaces/template.listFoodPlaces.js");
 require("/client/template.index.js");
 require("/client/addFoodPlace/addFoodPlace.js");
 require("/client/listFoodPlaces/listFoodPlaces.js");
+require("/client/index.js");
 require("/models/foodPlaces.js");

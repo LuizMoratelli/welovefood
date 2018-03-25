@@ -10,3 +10,11 @@ Template.listFoodPlaces.helpers({
         return moment(this.data).format('DD/MM/YYYY HH:mm');
     }
 });
+
+Template.listFoodPlaces.events({
+    "click button": function(e, template) {
+        var foodPlace = this;
+
+        FoodPlaces.remove({_id: foodPlace._id});
+    }
+});

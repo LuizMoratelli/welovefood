@@ -1,8 +1,14 @@
 Meteor.methods({
     addFoodPlace: function(obj){
-        FoodPlaces.insert({nome> obj.nome});
+        FoodPlaces.insert({
+            nome: obj.nome,
+            usuario: this.userId
+        });
     },
     removeFoodPlace: function(id) {
-        FoodPlace.remove({_id: id});
+        FoodPlaces.remove({
+            _id: id,
+            usuario: this.userId
+        });
     }
 });

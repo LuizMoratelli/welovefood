@@ -6,7 +6,7 @@ Template.addFoodPlace.events({
         var nome = input.val();
 
         //FoodPlaces.insert({nome: nome});
-        Meteor.call("newFoodPlace", {nome: nome});
+        Meteor.call("addFoodPlace", {nome: nome});
         input.val("");
     }
 });

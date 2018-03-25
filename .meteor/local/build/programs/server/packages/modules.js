@@ -92,6 +92,8 @@ install("reload");
 install("socket-stream-client", "meteor/socket-stream-client/node.js");
 install("ddp-client", "meteor/ddp-client/server/server.js");
 install("underscore");
+install("rate-limit", "meteor/rate-limit/rate-limit.js");
+install("ddp-rate-limiter");
 install("ecmascript-runtime-client");
 install("logging", "meteor/logging/logging.js");
 install("routepolicy", "meteor/routepolicy/main.js");
@@ -116,6 +118,14 @@ install("shell-server", "meteor/shell-server/main.js");
 install("jquery");
 install("mrt:bootstrap-3");
 install("momentjs:moment");
+install("stylus");
+install("accounts-base", "meteor/accounts-base/server_main.js");
+install("npm-bcrypt", "meteor/npm-bcrypt/wrapper.js");
+install("sha");
+install("srp");
+install("email");
+install("accounts-password");
+install("ian:accounts-ui-bootstrap-3");
 install("livedata");
 install("hot-code-push");
 install("launch-screen");
@@ -129,6 +139,7 @@ install("templating-compiler");
 install("templating-runtime");
 install("templating");
 install("autoupdate");
+install("service-configuration");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

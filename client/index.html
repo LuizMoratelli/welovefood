@@ -9,14 +9,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-
+                    {{> loginButtons}}
                 </ul>
             </div>
         </nav>
     </header>
     <main class="container">
-        <!--Importar Template-->
-        {{> addFoodPlace}}
-        {{> listFoodPlaces}}
+        {{#if currentUser}}
+            <!--Importar Template-->
+            {{> addFoodPlace}}
+            {{> listFoodPlaces}}
+        {{else}}
+            <span>Login Necessário</span>
+        {{/if}}
     </main>
 </body>

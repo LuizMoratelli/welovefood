@@ -29,7 +29,7 @@ Template.addFoodPlace.events({
     var input = $("#newFoodPlace");
     var nome = input.val(); //FoodPlaces.insert({nome: nome});
 
-    Meteor.call("newFoodPlace", {
+    Meteor.call("addFoodPlace", {
       nome: nome
     });
     input.val("");
@@ -110,9 +110,23 @@ Template.listFoodPlaces.events({
 
 Template.body.addContent((function() {
   var view = this;
-  return [ HTML.Raw('<header class="container">\n        <nav class="navbar navbar-default">\n            <div class="navbar-header">\n                <a href="#" class="navbar-brand">We Love Food!</a>\n            </div>\n            <div class="navbar-collapse collapse">\n                <ul class="nav navbar-nav navbar-right">\n\n                </ul>\n            </div>\n        </nav>\n    </header>\n    '), HTML.MAIN({
+  return [ HTML.HEADER({
     class: "container"
-  }, "\n        ", HTML.Raw("<!--Importar Template-->"), "\n        ", Spacebars.include(view.lookupTemplate("addFoodPlace")), "\n        ", Spacebars.include(view.lookupTemplate("listFoodPlaces")), "\n    ") ];
+  }, "\n        ", HTML.NAV({
+    class: "navbar navbar-default"
+  }, "\n            ", HTML.Raw('<div class="navbar-header">\n                <a href="#" class="navbar-brand">We Love Food!</a>\n            </div>'), "\n            ", HTML.DIV({
+    class: "navbar-collapse collapse"
+  }, "\n                ", HTML.UL({
+    class: "nav navbar-nav navbar-right"
+  }, "\n                    ", Spacebars.include(view.lookupTemplate("loginButtons")), "\n                "), "\n            "), "\n        "), "\n    "), "\n    ", HTML.MAIN({
+    class: "container"
+  }, "\n        ", Blaze.If(function() {
+    return Spacebars.call(view.lookup("currentUser"));
+  }, function() {
+    return [ "\n            ", HTML.Comment("Importar Template"), "\n            ", Spacebars.include(view.lookupTemplate("addFoodPlace")), "\n            ", Spacebars.include(view.lookupTemplate("listFoodPlaces")), "\n        " ];
+  }, function() {
+    return [ "\n            ", HTML.SPAN("Login Necessário"), "\n        " ];
+  }), "\n    ") ];
 }));
 Meteor.startup(Template.body.renderToDocument);
 

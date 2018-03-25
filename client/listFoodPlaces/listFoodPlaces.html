@@ -1,0 +1,18 @@
+<!--Definindo um Template-->
+<template name="listFoodPlaces">
+    <div class="row">
+        <div class="col-xs-12">
+            {{# each foodPlaces}}
+            <div class="row">
+                <div class="col-xs-11">
+                    Comer em: {{nome}}
+                </div>
+                <div class="col-xs-1">
+                    <button class="btn btn-danger">Excluir</button>
+                </div>
+            </div>
+            <hr>
+            {{/each}}
+        </div>
+    </div>
+</template>

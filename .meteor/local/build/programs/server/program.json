@@ -212,6 +212,15 @@
       "path": "packages/shell-server.js"
     },
     {
+      "path": "packages/jquery.js"
+    },
+    {
+      "path": "packages/mrt_bootstrap-3.js"
+    },
+    {
+      "path": "packages/momentjs_moment.js"
+    },
+    {
       "path": "packages/livedata.js"
     },
     {
@@ -219,9 +228,6 @@
     },
     {
       "path": "packages/launch-screen.js"
-    },
-    {
-      "path": "packages/jquery.js"
     },
     {
       "path": "packages/observe-sequence.js"

@@ -1,97 +1,96 @@
-var require = meteorInstall({"client":{"main.html":function(require,exports,module){
+var require = meteorInstall({"client":{"listFoodPlaces":{"template.listFoodPlaces.js":function(){
 
-///////////////////////////////////////////////////////////////////////
-//                                                                   //
-// client/main.html                                                  //
-//                                                                   //
-///////////////////////////////////////////////////////////////////////
-                                                                     //
-module.watch(require("./template.main.js"), {
-  "*": module.makeNsSetter(true)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                            //
+// client/listFoodPlaces/template.listFoodPlaces.js                                                           //
+//                                                                                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                              //
+
+Template.__checkName("listFoodPlaces");
+Template["listFoodPlaces"] = new Template("Template.listFoodPlaces", (function() {
+  var view = this;
+  return HTML.DIV({
+    class: "row"
+  }, "\n        ", HTML.DIV({
+    class: "col-xs-12"
+  }, "\n            ", Blaze.Each(function() {
+    return Spacebars.call(view.lookup("foodPlaces"));
+  }, function() {
+    return [ "\n            ", HTML.DIV({
+      class: "row"
+    }, "\n                ", HTML.DIV({
+      class: "col-xs-11"
+    }, "\n                    Comer em: ", Blaze.View("lookup:nome", function() {
+      return Spacebars.mustache(view.lookup("nome"));
+    }), "\n                "), "\n                ", HTML.DIV({
+      class: "col-xs-1"
+    }, "\n                    ", HTML.BUTTON({
+      class: "btn btn-danger"
+    }, "Excluir"), "\n                "), "\n            "), "\n            ", HTML.HR(), "\n            " ];
+  }), "\n        "), "\n    ");
+}));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"listFoodPlaces.js":function(){
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                            //
+// client/listFoodPlaces/listFoodPlaces.js                                                                    //
+//                                                                                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                              //
+//Define Helper de um Template
+//Helper vira algo no respectivo HTML
+Template.listFoodPlaces.helpers({
+  foodPlaces: function () {
+    return FoodPlaces.find({});
+  },
+  dateConvert: function () {
+    return moment(this.data).format('DD/MM/YYYY HH:mm');
+  }
 });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////
+}},"template.index.js":function(){
 
-},"template.main.js":function(){
-
-///////////////////////////////////////////////////////////////////////
-//                                                                   //
-// client/template.main.js                                           //
-//                                                                   //
-///////////////////////////////////////////////////////////////////////
-                                                                     //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                            //
+// client/template.index.js                                                                                   //
+//                                                                                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                              //
 
 Template.body.addContent((function() {
   var view = this;
-  return [ HTML.Raw("<h1>Welcome to Meteor!</h1>\n\n  "), Spacebars.include(view.lookupTemplate("hello")), "\n  ", Spacebars.include(view.lookupTemplate("info")) ];
+  return [ HTML.Raw('<header class="container">\n        <nav class="navbar navbar-default">\n            <div class="navbar-header">\n                <a href="#" class="navbar-brand">We Love Food!</a>\n            </div>\n            <div class="navbar-collapse collapse">\n                <ul class="nav navbar-nav navbar-right">\n\n                </ul>\n            </div>\n        </nav>\n    </header>\n    '), HTML.MAIN({
+    class: "container"
+  }, "\n        ", HTML.Raw("<!--Importar Template-->"), "\n        ", Spacebars.include(view.lookupTemplate("listFoodPlaces")), "\n    ") ];
 }));
 Meteor.startup(Template.body.renderToDocument);
 
-Template.__checkName("hello");
-Template["hello"] = new Template("Template.hello", (function() {
-  var view = this;
-  return [ HTML.Raw("<button>Click Me</button>\n  "), HTML.P("You've pressed the button ", Blaze.View("lookup:counter", function() {
-    return Spacebars.mustache(view.lookup("counter"));
-  }), " times.") ];
-}));
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Template.__checkName("info");
-Template["info"] = new Template("Template.info", (function() {
-  var view = this;
-  return HTML.Raw('<h2>Learn Meteor!</h2>\n  <ul>\n    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>\n    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>\n    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>\n    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>\n  </ul>');
-}));
+}},"models":{"foodPlaces.js":function(){
 
-///////////////////////////////////////////////////////////////////////
-
-},"main.js":function(require,exports,module){
-
-///////////////////////////////////////////////////////////////////////
-//                                                                   //
-// client/main.js                                                    //
-//                                                                   //
-///////////////////////////////////////////////////////////////////////
-                                                                     //
-var Template;
-module.watch(require("meteor/templating"), {
-  Template: function (v) {
-    Template = v;
-  }
-}, 0);
-var ReactiveVar;
-module.watch(require("meteor/reactive-var"), {
-  ReactiveVar: function (v) {
-    ReactiveVar = v;
-  }
-}, 1);
-module.watch(require("./main.html"));
-Template.hello.onCreated(function () {
-  function helloOnCreated() {
-    // counter starts at 0
-    this.counter = new ReactiveVar(0);
-  }
-
-  return helloOnCreated;
-}());
-Template.hello.helpers({
-  counter: function () {
-    return Template.instance().counter.get();
-  }
-});
-Template.hello.events({
-  'click button': function (event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  }
-});
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                            //
+// models/foodPlaces.js                                                                                       //
+//                                                                                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                              //
+FoodPlaces = new Mongo.Collection("FoodPlaces");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }}},{
   "extensions": [
     ".js",
     ".json",
-    ".html",
-    ".css"
+    ".html"
   ]
 });
-require("/client/template.main.js");
-require("/client/main.js");
+require("/client/listFoodPlaces/template.listFoodPlaces.js");
+require("/client/template.index.js");
+require("/client/listFoodPlaces/listFoodPlaces.js");
+require("/models/foodPlaces.js");

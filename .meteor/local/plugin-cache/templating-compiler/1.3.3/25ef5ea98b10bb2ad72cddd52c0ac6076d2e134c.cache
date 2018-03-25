@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"listFoodPlaces\");\nTemplate[\"listFoodPlaces\"] = new Template(\"Template.listFoodPlaces\", (function() {\n  var view = this;\n  return HTML.Raw(\"<ul>\\n        <li>Comer em: RockBurger</li>\\n        <li>Comer em: BlackBeard</li>\\n        <li>Comer em: China's Pizza</li>\\n    </ul>\");\n}));\n","bodyAttrs":{}}

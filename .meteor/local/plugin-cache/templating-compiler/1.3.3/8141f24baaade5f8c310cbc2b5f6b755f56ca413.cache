@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"listFoodPlaces\");\nTemplate[\"listFoodPlaces\"] = new Template(\"Template.listFoodPlaces\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

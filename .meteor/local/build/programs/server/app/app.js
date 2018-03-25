@@ -1,20 +1,12 @@
-var require = meteorInstall({"server":{"main.js":function(require,exports,module){
+var require = meteorInstall({"models":{"foodPlaces.js":function(){
 
 ///////////////////////////////////////////////////////////////////////
 //                                                                   //
-// server/main.js                                                    //
+// models/foodPlaces.js                                              //
 //                                                                   //
 ///////////////////////////////////////////////////////////////////////
                                                                      //
-let Meteor;
-module.watch(require("meteor/meteor"), {
-  Meteor(v) {
-    Meteor = v;
-  }
-
-}, 0);
-Meteor.startup(() => {// code to run on server at startup
-});
+FoodPlaces = new Mongo.Collection("FoodPlaces");
 ///////////////////////////////////////////////////////////////////////
 
 }}},{
@@ -23,6 +15,6 @@ Meteor.startup(() => {// code to run on server at startup
     ".json"
   ]
 });
-require("/server/main.js");
+require("/models/foodPlaces.js");
 //# sourceURL=meteor://💻app/app/app.js
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1ldGVvcjovL/CfkrthcHAvc2VydmVyL21haW4uanMiXSwibmFtZXMiOlsiTWV0ZW9yIiwibW9kdWxlIiwid2F0Y2giLCJyZXF1aXJlIiwidiIsInN0YXJ0dXAiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsSUFBSUEsTUFBSjtBQUFXQyxPQUFPQyxLQUFQLENBQWFDLFFBQVEsZUFBUixDQUFiLEVBQXNDO0FBQUNILFNBQU9JLENBQVAsRUFBUztBQUFDSixhQUFPSSxDQUFQO0FBQVM7O0FBQXBCLENBQXRDLEVBQTRELENBQTVEO0FBRVhKLE9BQU9LLE9BQVAsQ0FBZSxNQUFNLENBQ25CO0FBQ0QsQ0FGRCxFIiwiZmlsZSI6Ii9hcHAuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNZXRlb3IgfSBmcm9tICdtZXRlb3IvbWV0ZW9yJztcblxuTWV0ZW9yLnN0YXJ0dXAoKCkgPT4ge1xuICAvLyBjb2RlIHRvIHJ1biBvbiBzZXJ2ZXIgYXQgc3RhcnR1cFxufSk7XG4iXX0=
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1ldGVvcjovL/CfkrthcHAvbW9kZWxzL2Zvb2RQbGFjZXMuanMiXSwibmFtZXMiOlsiRm9vZFBsYWNlcyIsIk1vbmdvIiwiQ29sbGVjdGlvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQUEsYUFBYSxJQUFJQyxNQUFNQyxVQUFWLENBQXFCLFlBQXJCLENBQWIsQyIsImZpbGUiOiIvYXBwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiRm9vZFBsYWNlcyA9IG5ldyBNb25nby5Db2xsZWN0aW9uKFwiRm9vZFBsYWNlc1wiKTtcbiJdfQ==
